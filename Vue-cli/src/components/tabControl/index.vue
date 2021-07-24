@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import {  ref } from '@vue/reactivity'
+import {  ref } from 'vue'
 import TabControl from './TabControl.vue'
 export default {
     name:"tab",
