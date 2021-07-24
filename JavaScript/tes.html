@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var obj = {
+            p1: 123,
+            p2: 456,
+            p3: {
+                aa: 'aa',
+                bb: 'bb',
+                cc: {
+                    ww: 'ww'
+                }
+            }
+        };
+
+
+        // var proto = Object.defineProperty({}, 'foo', {
+        //     value: 'a',
+        //     writable: false
+        // });
+
+        // var obj = Object.create(proto);
+        // Object.defineProperty(obj, 'foo', {
+        //     value: 'b'
+        // });
+
+        // console.log(obj);
+
+
+        // var arr = ['a','b','c']
+        function judge(target,key){
+            if(Array.isArray(target)){
+                target.splice(key,1)
+                console.log(target);
+                return
+            }
+            delete target[key];
+            console.log(target);
+
+        }
+        judge(obj,'p2')
+
+
+
+    </script>
+</body>
+
+</html>

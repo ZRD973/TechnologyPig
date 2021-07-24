@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //全等需要类型也相等
+        console.log('' == 0); //true
+        console.log('    ' == 0); //true
+        console.log(null == undefined); // true
+        // null 和 undefined 不等于任何值
+        console.log(null == 0); // false
+        console.log(null == ''); // fasle
+        console.log(undefined == ''); // fasle
+
+        var a = {}
+        var b = {}
+        var c = a
+        a == b; //false
+        a === b; //false
+        a == c; //true
+        a === c; //true
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 默认绑定
+        function global() {
+            console.log(this);  //window
+        }
+        global();
+        console.log('-------------------------------------');
+        // 题目一
+        function a() {
+            function b() {
+                console.log(this);
+                function c() {
+                    "use strict";
+                    console.log(this);//严格模式下，this变成undefined
+                }
+                c();
+            }
+            b();
+        }
+        a();
+
+        console.log('-------------------------------------');
+
+        //隐式绑定
+        var name = '小白';
+        function special(){
+            var name = 'asdad'
+            console.log('姓名：' + this.name);
+        }
+        var girl = {
+            name: 'lisa',
+            sex: 'girl',
+            detail: function () {
+                console.log('姓名：' + this.name);
+                console.log('性别：' + this.sex);
+            },
+            women: {
+                name: '小黄',
+                detail: function () {
+                console.log('姓名：' + this.name);
+                }
+            },
+            special:special
+        }
+        girl.detail();
+        girl.women.detail();
+        girl.special(); //this指向调用他的对象girl
+        console.log('-------------------------------------');
+
+        // 硬绑定
+        var girlName = {
+            name: '小红',
+            sayName: function () {
+                console.log('我的名字是' + this.name);
+            }
+        }
+        var girl1 = {
+            name: '小白'
+        }
+        var girl2 = {
+            name: '小黑'
+        }
+        girlName.sayName.call(girl1);
+        girlName.sayName.apply(girl2);
+
+        console.log('-------------------------------------');
+
+        // 构造函数绑定
+        function Wife(name) {
+            this.name = name;
+            this.sayNmae = function () {
+                console.log('我老婆的名字是' + this.name);
+            }
+        }
+        //this指向实例出来的对象
+        var xiaohong = new Wife('小红');
+        xiaohong.sayNmae();
+
+
+    </script>
+</body>
+
+</html>

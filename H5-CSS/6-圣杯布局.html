@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        header,footer{
+            width: 100%;
+            height: 10vh;
+            background: rgb(204, 119, 40);
+            text-align: center;
+        }
+        .clearfix::before,
+        .clearfix::after{
+            content:'';
+            display: block;
+            clear: both;
+        }
+        .wrapper{
+            padding: 0 100px;
+        }
+        .center,.left,.right{
+            float: left;
+            text-align: center;
+            /* height: 80vh; */
+        }
+        .left{
+            width: 100px;
+            background: lightblue;
+            margin-left: -100%;
+            position: relative;
+            left: -100px;
+        }
+        .center{
+            width: 100%;
+            background: pink;
+        }
+        .right{
+            width: 100px;
+            margin-left: -100px;
+            background: greenyellow;
+            position: relative;
+            right: -100px;
+        }
+    </style>
+</head>
+<body>
+    <!--圣杯布局
+        左右宽度固定，中间自适应，中间优先加载
+    -->
+    <header>头部</header>
+    <div class="wrapper clearfix">
+        <div class="center">主区域</div>
+        <div class="left">左区域</div>
+        <div class="right">右区域</div>
+    </div>
+    <footer>底部</footer>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <a href="https://wangdoc.com/javascript/stdlib/attributes.html">链接</a>
+    <script>
+        var a = ['Hello', 'World'];
+        var obj = { p1: 123, p2: 456 };
+
+        // 只能用于对象自身的属性
+        Object.getOwnPropertyDescriptor(obj, 'p1');  // {value: 123, writable: true, enumerable: true, configurable: true}
+        Object.getOwnPropertyNames(a);//还可以返回不可枚举的属性,数组中的length是不可枚举属性
+        Object.keys(a); // 返回数组，该数组的成员都是该对象自身的（而不是继承的）所有属性名，只返回可枚举的属性(可遍历属性)
+        // console.log(Object.keys(a));
+        // console.log(Object.getOwnPropertyNames(a));
+
+        //直接在一个对象上定义一个新属性，或者修改一个对象的现有属性，并返回此对象。
+        Object.defineProperty(obj, 'p3', {
+            enumerable: false, configurable: false, writable: false, value: "static",
+            // get() { },
+            // set() { }  //一旦定义了取值函数get（或存值函数set），就不能将writable属性设为true，或者同时定义value属性，否则会报错。
+        })
+        // 元属性:属性描述对象的各个属性称为“元属性”，因为它们可以看作是控制属性的属性
+        // value:是目标属性的值
+        // writable:是一个布尔值，决定了目标属性的值（value）是否可以被改变，如果为false，原型上的值不能更改如果为true，等于在自身上添加一个属性
+        // Object.defineProperty(obj, 'foo', {
+        //     value: 'b'    原型链会被完全忽视。
+        // });
+        // enumerable：（可遍历性）返回一个布尔值，表示目标属性是否可遍历。
+        // configurable：(可配置性）返回一个布尔值，决定了是否可以修改属性描述对象，是否可以被删除（delete）
+
+        // 具体来说，如果一个属性的enumerable为false，下面三个操作不会取到该属性。
+        // for..in循环,Object.keys方法,JSON.stringify方法.因此，enumerable可以用来设置“秘密”属性。
+
+        // 存取器（accessor）
+        var object = Object.defineProperty({}, 'p', {
+            get: function () { return 'getter'; },
+            set: function (value) { console.log('setter: ' + value); }
+        });  //属性p的configurable和enumerable都为false
+
+        var object = {
+            get p() { return 'getter'; },
+            set p(value) { console.log('setter: ' + value); }
+        };  //属性p的configurable和enumerable都为true
+
+
+        // 由弱到强
+        Object.preventExtensions();  //让一个对象变的不可扩展，也就是永远不能再添加新的属性
+        Object.isExtensible();  //判断对象是否可扩展。
+        Object.seal()  //封闭一个对象，阻止添加新属性也无法删除旧属性，并将所有现有属性标记为不可配置。当前属性的值只要原来是可写的就可以改变，原理是改变了configurable为false。
+        Object.isSealed() //方法判断一个对象是否被密封。
+        Object.freeze();   // 冻结一个对象,不能被修改,不能添加属性，不能删除属性，原型也不能被修改，操作并不报错。
+        Object.isFrozen();  //方法判断一个对象是否被冻结。
+        //漏洞：可以通过改变原型对象，来为对象增加属性。
+        //一种解决方案是，把obj的原型也冻结住。var proto = Object.getPrototypeOf(obj); Object.preventExtensions(proto);
+        //另外一个局限是，如果属性值是对象，上面这些方法只能冻结属性指向的对象，而不能冻结对象本身的内容。
+
+        const person = {
+            isHuman: false,
+            zs: {
+                name: 'zs'
+            },
+            printIntroduction: function () {
+                console.log(`My name is ${this.name}. Am I human? ${this.isHuman}`);
+            }
+        };
+        const me = Object.create(person);   //创建一个新对象，使用现有的对象来提供新创建的对象的__proto__。
+        me.name = 'zrd';
+        me.isHuman = true;
+        // me.printIntroduction();    //"My name is Matthew. Am I human? true"
+        // console.log(me);
+        Object.getPrototypeOf(me)  //方法返回指定对象的原型（内部[[Prototype]]属性的值）
+
+        //用于将所有可枚举属性的值从一个或多个源对象分配到目标对象。它将返回目标对象。
+        //如果目标对象中的属性具有相同的键,后面的源对象的属性将类似地覆盖前面的源对象的属性。
+        // Object.assign(target, source);
+
+        Object.prototype.valueOf()   //是返回一个对象的“值”，默认情况下返回对象本身
+        Object.prototype.toString()  //是返回一个对象的字符串形式，默认情况下返回类型字符串
+        Object.prototype.toLocaleString()  //同上，date不一样
+        Object.prototype.toString.call();  //判断一个值的类型。
+        Object.prototype.hasOwnProperty() //判断实例对象自身是否具有该属性
+
+        Object.is() //方法判断两个值是否为同一个值,不会强制转换两边的值
+        // console.log(Object.prototype);
+
+
+
+
+    </script>
+</body>
+
+</html>

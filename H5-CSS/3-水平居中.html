@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1 {
+            text-align: center;
+        }
+
+        p {
+            text-align: center;
+        }
+
+        .father {
+            text-align: center;
+        }
+
+        span {
+            text-align: center;
+            /* 无效 */
+        }
+
+        .div {
+            width: 100px;
+            height: 100px;
+            background: yellow;
+            margin: 0 auto;
+        }
+
+        .contain {
+            border: 2px solid red;
+            width: 600px;
+            height: 500px;
+        }
+
+        .float {
+            width: 100px;
+            height: 100px;
+            background: rgba(139, 99, 99, 0.5);
+            float: left;
+            position: relative;
+            left: 50%;
+            transform: translate(-50%);
+            /* margin-left: -50px; */
+        }
+
+        .line {
+            height: 500px;
+            width: 0;
+            margin: auto;
+            border: 1px solid black;
+            z-index: 999;
+        }
+        .contain2 {
+            border: 2px solid red;
+            width: 500px;
+            height: 500px;
+            text-align: center;
+            position: relative;
+        }
+        .inline{
+            /* 加上绝对定位后，可以像操作块级元素一样 */
+            color: red;
+            position: absolute;
+            left: 0;
+            right: 0;
+            width: 120px;
+            margin: 0 auto;
+            /* left: 50%;
+            transform: translate(-50%); */
+        }
+    </style>
+</head>
+
+<body>
+    <h1>132313</h1>
+    <p>132313</p>
+    <div class="father">
+        <!-- 普通流inline -->
+        <span>213123</span>
+    </div>
+    <!-- 普通流block -->
+    <div class="div"></div>
+    <!-- 浮动元素 -->
+    <div class="contain">
+        <div class="float"></div>
+        <div class="line"></div>
+    </div>
+    <!-- 绝对定位 -->
+    <div class="contain2">
+        <span class="inline">span标签文字</span>
+        <div class="line"></div>
+    </div>
+</body>
+
+</html>

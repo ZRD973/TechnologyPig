@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function randomNum(num) {
+            let start = new Date().getTime()
+            var arr = [];
+            for (var i = 0; i < num; i++) {
+                arr[i] = i + 1;
+            }
+            for (j = 0; j < arr.length; j++) {
+                var index = Math.floor(Math.random() * num)
+                var temp = arr[num - 1];
+                arr[num - 1] = arr[index];
+                arr[index] = temp;
+                num--;
+            }
+            let end = new Date().getTime()
+            console.log(end - start);
+            console.log(arr);
+            return arr;
+        }
+
+
+        function randomTwo(num) {
+            var arr = [];
+            for (var i = 0; i < num; i++) {
+                arr[i] = i + 1;
+            }
+            arr.sort(function () {
+                return 0.5 - Math.random();
+            })
+            console.log(arr);
+        }
+        randomNum(1000)
+        // randomTwo(5)
+
+        function qqq(a) {
+            let start = new Date().getTime()
+            const b = new Array(a);
+            for (let i = 0; i < b.length; i++) {
+                const c = parseInt(Math.random() * a) + 1
+                b.indexOf(c) === -1 ? b[i] = c : i--;
+            }
+            let end = new Date().getTime()
+            console.log(end - start);
+        }
+        // qqq(1000)
+
+
+
+    </script>
+</body>
+
+</html>

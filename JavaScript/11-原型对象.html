@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    // 类型与对象
+    // 基本类型：string,number,boolean,object,null,undefined
+    // 引用类型：Object,Function,Array
+    var a = new String();
+    console.log(a.__proto__ === String.prototype);//true
+
+
+function Mother(lastName){
+    this.lastName = lastName;
+    console.log(this);
+}
+var son = new Mother("Da");
+son.lastName;
+// 1、创建一个新对象  son
+// 2、新对象会被执行[[prototype]]连接； son.__proto__ = Mother.prototype;
+// 3、新对象和函数调用的this会绑定起来；  Mother.call(son,"Da");
+// 4、执行构造函数中的代码； son.lastName;
+// 5、如果函数没有返回值，那么就会自动返回这个新对象；  return this;
+
+</script>
+</body>
+</html>

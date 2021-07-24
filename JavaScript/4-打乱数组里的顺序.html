@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // fisher-yates shuffle
+        var students = ["学生1", "学生2", "学生3", "学生4", "调皮学生",]
+        function random(students) {
+            var index, temp;
+            for (var point = students.length - 1; point >= 0; point--) {
+                index = Math.floor(Math.random() * point);
+                temp = students[index];
+                students[index] = students[point];
+                students[point] = temp;
+            }
+            console.log(students);
+            return students;
+        }
+        random(students)
+
+    </script>
+</body>
+
+</html>

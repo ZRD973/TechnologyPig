@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 一、在父元素加上float或者display: inline-block;不推荐，造成布局混乱 */
+        /* 二、在父元素加上overflow: hidden; */
+        /* 三、在元素末尾手动加上一个块级元素，添加clear：both */
+        /* 四、添加伪元素 */
+        .clearfix::before,
+        .clearfix::after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        .box {
+            width: 300px;
+            background: rgb(223, 223, 147);
+            /* float: left; */
+            /* display: inline-block; */
+            /* overflow: hidden; */
+        }
+
+        .float1 {
+            width: 50%;
+            height: 100px;
+            float: left;
+            background-color: aqua;
+        }
+        .float2 {
+            width: 50%;
+            height: 100px;
+            float: left;
+            background-color: blueviolet;
+        }
+
+        p {
+            clear: both;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="box clearfix">
+        <div class="float1">123</div>
+        <div class="float2">456</div>
+        <!-- <p></p> -->
+    </div>
+    <script>
+
+
+    </script>
+</body>
+
+</html>

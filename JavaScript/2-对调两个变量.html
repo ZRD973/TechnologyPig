@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //临时变量法
+
+        var a = 3;
+        var b = 5;
+        var c = b;
+        b = a;
+        a = c;
+        console.log(a, b);
+
+        //加减法
+
+        var a = 3;
+        var b = 5;
+        a = a + b;
+        b = a - b;
+        a = a - b;
+        console.log(a, b);
+
+        // 数组法
+        var a = 3;
+        var b = 5;
+        a = [a, b];
+        b = a[0];
+        a = a[1];
+        console.log(a, b);
+
+        // 对象法
+        var a = 3;
+        var b = 5;
+        object = { a: b, b: a }
+        a = object.a;
+        b = object.b;
+        console.log(a, b);
+
+        //数据运算发
+        var a = 3;
+        var b = 5;
+        a = [b, b = a][0]
+        console.log(a, b);
+
+        //按位异或法
+        var a = 3;
+        var b = 5;
+        a = a ^ b;
+        b = a ^ b;
+        a = a ^ b;
+        console.log(a,b);
+
+        //解构赋值法
+        var a = 3;
+        var b = 5;
+        [a,b] = [b,a]
+        console.log(a,b);
+
+
+    </script>
+</body>
+
+</html>

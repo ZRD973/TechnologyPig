@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    td {
+        border: 1px solid lightblue;
+    }
+</style>
+
+<body>
+    <script>
+        document.write("<table>")
+        for (let row = 1; row < 10; row++) {
+            document.write("<tr>")
+            for (let col = 1; col <= row; col++) {
+                document.write("<td>" + col + '*' + row + '=' + col * row + "</td>")
+            }
+            document.write("<tr/>")
+        }
+        document.write("</table>")
+
+document.write("*****************************************************************************")
+
+        document.write("<table>")
+        for (let row = 1; row < 10; row++) {
+            document.write("<tr>")
+            for (let blank = 9-row; blank > 0; blank--) {
+                document.write('<td></td>')
+            }
+            for (let col = row; col > 0; col--) {
+                document.write("<td>" + row + '*' + col + '=' + col * row + "</td>")
+            }
+            document.write("<tr/>")
+        }
+        document.write("</table>")
+    </script>
+</body>
+
+</html>

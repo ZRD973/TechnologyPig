@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 暴力解法
+        // var nums = [11, 2, 15, 7, 55, 10, 63];
+        // function TowSum(target) {
+        //     for (var i = 0; i < nums.length; i++) {
+        //         for (let j = i + 1; j < nums.length; j++) {
+        //             if (nums[i] + nums[j] === target) {
+        //                 console.log('[' + i + ',' + j + ']');
+        //             }
+        //         }
+        //     }
+        // }
+        // TowSum(74);
+
+
+        var nums = [2, 11, 15, 7];
+        var target = 26;
+        var towSum = function (nums, target) {
+            var box = {};
+            // var box = new Map(); //运行速度变快,考虑浏览器是否支持es6的规范
+            for (var i = 0; i < nums.length; i++) {
+                if (box[target - nums[i]] >= 0) {
+                    return [box[target - nums[i]], i];
+                };
+                box[nums[i]] = i;
+            }
+        }
+        console.log(towSum(nums, 26));
+        // towSum(nums,target)
+
+    </script>
+</body>
+
+</html>

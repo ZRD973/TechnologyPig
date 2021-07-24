@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>这是第一天</title>
+</head>
+<body>
+
+	纯函数、高阶函数、惰性函数、节流防抖、扁平化
+	柯里化、偏函数、缓存函数、结合律、函数组合、pointfree
+</body>
+<script type="text/javascript">
+	//js是一门解释性语言
+	//单行注释
+	/*
+		多行注释
+	*/
+	//输出方式
+	// alert("弹窗输出");
+	// console.log("控制台输出");
+	//不加分号也可以（建议大家加上）
+	//‘’ “”:这两个引号是没区别
+
+	//变量：
+	//定义变量
+	//let num = 0;
+
+	//let 和 var 定义变量的区别：
+	//1.let定义的话，是局部变量
+	//2.var定义是全局变量,会产生变量提升
+	//闭包
+
+	//变量的生命周期：从定义变量开始到当前
+
+	//数据类型：
+	//1、number(整型+浮点型)
+	//2、boolean
+	//3、string
+	//4、null(没有变量)
+	//5、undefined(没有值)
+	//6、object
+	//7、function
+
+	//变量要运算（运算符）：
+	//算数运算符：+ - * / %
+	//比较运算符：> < >= <= != == !== ===
+	//逻辑运算符： && || !
+	//==（存在隐式转换） ===（严格等于）
+	//三目运算符：表达式1?表达式2:表达式3;
+	//++ --:放在前面 先自增（自减）再运算，放在后面先运算后自增（自减）
+
+	//判断语句
+	// if(判断条件){
+	// 	当判断条件成立（为真）的时候，会来执行大括号的内容；
+	// }
+
+	//三目运算符与if语句来对比
+	//let age = 18;
+	// if(age >= 18){
+	// 	age = 3;
+	// }
+	// else{
+	// 	age = 17;
+	// }
+	// console.log(age);
+
+	// age = age >= 18 ? 3 : 17;
+	// console.log(age);
+
+	//if()...else if()...else{}
+	// if(判断条件1){
+	// 	判断条件1成立的时候执行的内容；
+	// }
+	// else if(判断条件2){
+	// 	判断条件1不成立，判断条件2成立的时候执行的内容；
+	// }
+	// else if(判断条件3){
+	// 	判断条件1、2不成立，判断条件3成立的时候执行的内容；
+	// }
+	// else{
+	// 	上面的条件都不成立的时候执行的内容；
+	// }
+
+	// let num = 3;
+	// switch(num){
+	// 	case 3:
+	// 	console.log("3岁");
+	// 	break;
+	// 	case 18:
+	// 	console.log("18岁");
+	// 	break;
+	// 	default:
+	// 	break;
+	// }
+
+	//1、break不能省略，如果省略会往下穿透直到遇到break为止
+	//2、default可以省略，但是建议不要省略，如果没有默认值的话就放空
+
+	//短路语句：
+	// let num = 18;
+	// if( true || num++ ){
+
+	// }
+	// console.log(num);
+
+	//循环语句：
+	// for(表达式1; 表达式2; 表达式3){
+
+	// }
+	// 表达式1：初始化语句（定义变量）
+	// 表达式2：判断语句
+	// 表达式3：让循环趋于结束（避免死循环）
+
+	// let num = 0;
+	// for(;num < 11;){
+	// 	console.log(num);
+	// 	num++;
+	// }
+
+	// while(条件判断){
+
+	// }
+	// let num = 0;
+	// while(num < 11){
+	// 	console.log(num);
+	// 	num++;
+	// }
+	//游戏的本质:
+	// while(true){
+
+	// }
+
+	//读数据
+	// while(true){
+	// 	//做游戏一定要遵循数据先行的原则
+	// 	update();//数据更新
+	// 	render();//游戏渲染
+	// }
+
+	//do...while()
+	// let num = 0;
+	// do{
+	// 	console.log(num);
+	// 	num++;
+	// }while(num < 0)
+
+	//判断一个数是不是质数
+	//质数：大于1,除了1和它本身没有其他因数
+	// let num = 3;
+	// if(num > 1){
+	// 	let zhiShu = true;
+	// 	for(let i = 2; i < num;i++){
+	// 		if(num % i === 0){
+	// 			zhiShu = false;
+	// 			break;
+	// 		}
+	// 	}
+	// 	if(zhiShu){
+	// 		console.log("是质数");
+	// 	}
+	// 	else{
+	// 		console.log("不是质数");
+	// 	}
+	// }
+	// else{
+	// 	console.log("数字不符合条件");
+	// }
+
+	//输出99乘法表
+	// for(let i = 1; i <= 9; i++){//控制行
+	// 	for(let j = 1; j <= i; j++){//控制列
+	// 		if(i *j < 10){
+	// 			document.write(j + "*" + i + "=" + i*j + "&nbsp&nbsp");
+	// 		}
+	// 		else{
+	// 			document.write(j + "*" + i + "=" + i*j + "&nbsp");
+	// 		}
+	// 	}
+	// 	//换行
+	// 	document.write("</br>")
+	// }
+
+	//数组：可以存放任意类型的东西
+	//let arrNum = [1,2,3,true,"张三",null,undefined,{},[],function()];
+	//通过索引访问元素：从0开始
+	//console.log(arrNum[3]);
+
+	//let arrNum = [1,2,3,4,5];
+	//console.log(arrNum);
+	//查
+	//遍历数组
+	// for(let i = 0 ; i < arrNum.length; i++){
+	// 	console.log(arrNum[i]);
+	// }
+
+	//C++11也有类似这种遍历的方式
+	// for(let num of arrNum){
+	// 	console.log(num);
+	// }
+
+	//改
+	// arrNum[1] = 0;
+	// //console.log(arrNum[1]);
+	// for(let num of arrNum){
+	// 	console.log(num);
+	// }
+
+	//增
+	//arrNum[5] = 6;
+	//arrNum.push(6);
+	//console.log(arrNum);
+	//console.log(arrNum[5]);
+	// arrNum.splice(4,0,6,7);
+	// for(let num of arrNum){
+	// 	console.log(num);
+	// }
+
+	//删：数组.splice(位置,要删除的元素个数,插入的元素1,插入的元素2....)
+	// arrNum.splice(1,2);
+	// console.log(arrNum);
+	// for(let num of arrNum){
+	// 	console.log(num);
+	// }
+
+	//对象：可以存放任意类型的东西
+	//1、键值对和键值对中间用逗号隔开
+	//2、键(字符串)与值(可以任意类型)之间用冒号隔开
+	// let objPlayer = {
+	// 	"name":"张三",
+	// 	"age":18
+	// };
+	//增
+	//objPlayer["boy"] = false;
+	//objPlayer.boy = false;
+	//console.log(objPlayer);
+	//查
+	//console.log(objPlayer);
+	//console.log(objPlayer.name);
+	//console.log(objPlayer["name"]);
+	// for(let key in objPlayer){
+	//  	console.log(objPlayer[key]);
+	// }
+
+	//改
+	// objPlayer.name= "李四";
+	// console.log(objPlayer.name);
+
+	//函数
+	//定义一个函数
+	// function print(){
+	// 	console.log("print函数");
+	// }
+
+	//匿名函数
+	// let print = function (){
+	// 	console.log("匿名函数被调用了");
+	// }
+	// print();
+	//箭头函数
+	// let print = ()=>{
+	// 	console.log("箭头函数被调用了");
+	// }
+	// print();
+
+	//函数调用
+	// print();
+
+	//this指向：谁调用指向谁
+	// let player = {
+	// 	print:function (){
+	// 		console.log(this.name);
+	// 	},
+	// 	name:"张三"
+	// }
+
+	// let player2 = {
+	// 	name:"李四"
+	// }
+	// //player.print();
+
+	// player2.print = player.print;
+	// player2.print();
+
+	// //数组去重
+	// let arrNum = [1,4,6,1,4,3,87,1,646,2,1,2,4,87];
+	// //遍历数组
+	// let temp = {};
+	// for(let num of arrNum){
+	// 	//对象的插入
+	// 	temp[num] = true;
+	// }
+	// //数组清空
+	// arrNum.length = 0;
+	// //遍历对象
+	// for(let key in temp){
+	// 	arrNum.push(parseInt(key));
+	// }
+	// console.log(arrNum);
+
+	let stu1 = {
+		name:"张三",
+		test:[1,1,2,3],
+		player:{
+			hp:100,
+			mp:80
+		},
+		age:18
+	}
+	let stu2 = {};
+	//src：原路径，我要被拷贝的对象
+	//dest：目标路径，我要拷贝到哪里
+
+	//为什么要有深拷贝？如果赋值的是个对象的话，没有深拷贝的话会值传递
+	//深拷贝：开发者自己设计的一个函数
+
+	//只是creator + js
+	function deepCopy(src,dest){
+		//js语法过于简单，dest可以不传
+		var dest = dest || {};
+		for(let key in src){
+			if(typeof(src[key]) === "object"){
+				//是不是数组
+				//判断数组的三种方式
+				//1、Array.isArray(数组);
+				//2、数组 instanceof Array
+				//3、数组.constructor === Array
+				if(src[key].constructor === Array){
+					dest[key] = [];
+				}
+				else{
+					dest[key] = {};
+				}
+				deepCopy(src[key],dest[key]);
+			}
+			else{
+				dest[key] = src[key];
+			}
+		}
+		return dest;
+	}
+
+	stu2 = deepCopy(stu1,stu2);
+
+	console.log(stu2);
+
+	// function setPosition(x,y){
+	// 	console.log(x);
+	// 	console.log(y);
+	// }
+
+	// setPosition(5);
+
+	//值传递
+	//let stu2 = stu1;
+	//stu2.name = "李四";
+	//console.log(stu2.name);
+	//console.log(stu1.name);
+
+</script>
+</html>

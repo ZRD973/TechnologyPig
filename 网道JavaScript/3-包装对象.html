@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <a href="https://wangdoc.com/javascript/stdlib/wrapper.html" target="target">链接</a>
+    <script>
+        // 三种原始类型的值——数值、字符串、布尔值——在一定条件下，也会自动转为对象，也就是原始类型的“包装对象”（wrapper）。
+        //包装对象:Number、String、Boolean
+
+        var v1 = new Number(123);
+        var v2 = new String('abc');
+        var v3 = new Boolean(true);
+        typeof v1 // "object"
+        typeof v2 // "object"
+        typeof v3 // "object"
+        v1 === 123 // false
+        v2 === 'abc' // false
+        v3 === true // false
+
+        // 字符串转为数值
+        Number('123') // 123
+        // 数值转为字符串
+        String(123) // "123"
+        // 数值转为布尔值
+        Boolean(123) // true
+        // 总结:这三个对象作为构造函数使用（带有new）时，可以将原始类型的值转为对象；作为普通函数使用时（不带有new），可以将任意类型的值，转为原始类型的值。
+
+        // valueOf()  返回包装对象实例对应的原始类型的值。
+        new Number(123).valueOf()  // 123
+        new String('abc').valueOf() // "abc"
+        new Boolean(true).valueOf() // true
+
+        // toString()  返回对应的字符串形式。
+        new Number(123).toString() // "123"
+        new String('abc').toString() // "abc"
+        new Boolean(true).toString() // "true"
+
+        // 原始类型与实例对象的自动转换,调用结束后，包装对象实例会自动销毁
+        'abc'.length // 3
+        // 等同于
+        var strObj = new String('abc')
+        // 自动转换生成的包装对象是只读的，无法修改。所以，字符串无法添加新属性。
+
+        // 自定义方法
+        // 在原型prototype添加方法
+        String.prototype.double = function () {
+            return this.valueOf() + this.valueOf();
+        };
+        'abc'.double()  // abcabc
+
+        // Boolean 对象
+        // 对于一些特殊值，Boolean对象前面加不加new，会得到完全相反的结果，必须小心。
+        if (Boolean(false)) { console.log('true'); } // 无输出
+        if (new Boolean(false)) { console.log('true'); } // true
+        if (new Boolean(false).valueOf()) { console.log('true'); } // 无输出
+        if (Boolean(null)) { console.log('true'); } // 无输出
+        if (new Boolean(null)) { console.log('true'); } // true
+
+        // Number 对象
+        // Number对象有4个实例方法，都跟将数值转换成指定格式有关。
+        Number.prototype.toString()  //将一个数值转为字符串形式。
+        Number.prototype.toFixed()  //先将一个数转为指定位数的小数，然后返回这个小数对应的字符串。参数范围为0到100
+        Number.prototype.toExponential()  //将一个数转为科学计数法形式,参数范围为0到100
+        Number.prototype.toPrecision() //将一个数转为指定位数的有效数字。参数范围为0到100
+        Number.prototype.toLocaleString()
+        console.log((123).toLocaleString('zh-Hans-CN-u-nu-hanidec'));  //一二三
+        console.log((new Date()).toLocaleString()); //2021/5/26上午11:47:36
+        console.log((new Date()).toLocaleString('zh-Hans-CN-u-nu-hanidec')); //二〇二一/五/二六上午一一:四七:〇八
+        (123).toLocaleString('zh-Hans-CN', { style: 'percent' }) // "12,300%"
+        (123).toLocaleString('zh-Hans-CN', { style: 'currency', currency: 'CNY' }) // "￥123.00"
+    </script>
+</body>
+
+</html>

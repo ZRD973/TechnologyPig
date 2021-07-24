@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        header,
+        footer {
+            width: 100%;
+            height: 10vh;
+            background: rgb(204, 119, 40);
+            text-align: center;
+        }
+
+        footer {
+            clear: both;
+        }
+
+        .wrapper {
+            width: 100%;
+            float: left;
+            background: red;
+        }
+
+
+        .left,
+        .right {
+            float: left;
+            text-align: center;
+        }
+
+        .left {
+            width: 100px;
+            background: lightblue;
+            margin-left: -100%;
+        }
+
+        .center {
+            margin: 0 100px;
+            text-align: center;
+            background: pink;
+        }
+
+        .right {
+            width: 100px;
+            margin-left: -100px;
+            background: greenyellow;
+        }
+    </style>
+</head>
+
+<body>
+    <header>头部</header>
+    <div class="wrapper">
+        <div class="center">主区域</div>
+    </div>
+    <div class="left">左区域</div>
+    <div class="right">右区域</div>
+    <footer>尾部</footer>
+</body>
+
+</html>

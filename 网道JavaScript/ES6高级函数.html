@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+
+
+    <script>
+        let arr = [30, 20, 40, 2, 4, 6, 80]
+        let arr1 = arr.filter(n => {
+            return n >= 10
+        })
+        console.log(arr1);
+
+        let arr2 = arr1.map(n => {
+            return n * 0.5
+        })
+        console.log(arr2);
+
+        let arr3 = arr2.reduce((s, n) => {
+            return s + n
+        }, 0)
+        console.log(arr3);
+
+        // arr.some(n=>{
+        //     console.log(n);
+
+        // })
+        // arr.every(n=>{
+        //     console.log(n);
+        // })
+        const obj = new Set();
+        obj.add(1);
+        obj.add(2);
+        obj.add(['aa', 'bb'])
+        obj.add(2); //重复数据添加不了
+        console.log(obj.has(5));
+        console.log(obj.has(1));
+        console.log(obj.delete(1));
+        obj.clear()
+        console.log(obj);
+
+        const obj2 = new Map()
+        obj2.set('one', 'abc')
+        console.log(obj2.get("one"));
+        console.log(obj2);
+
+
+
+    </script>
+</body>
+
+</html>

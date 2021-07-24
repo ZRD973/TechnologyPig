@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function Supermarket() { };
+        Supermarket.prototype.product = '口罩';
+        function Shop() { };
+        Shop.prototype = new Supermarket();
+        var person = new Shop();
+        console.log(person.product);
+
+        var F = function(){};
+        Object.prototype.a = function(){};
+        Function.prototype.b = function(){};
+        var f = new F();
+        console.log(f);  //f里面有a
+
+    </script>
+</body>
+
+</html>

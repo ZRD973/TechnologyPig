@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <a href="https://www.cnblogs.com/liugang-vip/p/5616484.html">部分代码，详情请点击链接</a>
+    <input type="button" id="btn" value="点击" />
+    <ul id="ul">
+        <li>aaaaaaaa</li>
+        <li>bbbbbbbb</li>
+        <li>cccccccc</li>
+    </ul>
+    <script>
+        window.onload = function () {
+            var oUl = document.getElementById("ul");
+            var aLi = oUl.getElementsByTagName("li");
+            var oBtn = document.getElementById("btn");
+            var iNow = 4;
+            /*
+            这里要用到事件源：event 对象，事件源，不管在哪个事件中，只要你操作的那个元素就是事件源。
+            ie：window.event.srcElement
+            标准下:event.target
+            nodeName:找到元素的标签名
+            */
+            oUl.onmouseover = function (event) {
+                var event = event || window.event;
+                var target = event.target || event.srcElement;
+                if (target.nodeName.toLowerCase() == "li") {
+                    target.style.background = "red";
+                }
+            }
+            oUl.onmouseout = function (event) {
+                var event = event || window.event;
+                var target = event.target || event.srcElement;
+                if (target.nodeName.toLowerCase() == "li") {
+                    target.style.background = "";
+                }
+            }
+            oBtn.onclick = function () {
+                iNow++;
+                var oLi = document.createElement("li");
+                oLi.innerHTML = 1111 * iNow;
+                oUl.appendChild(oLi);
+            }
+        }
+
+
+
+        // window.onload = function () {
+        //     var oUl = document.getElementById("ul");
+        //     var aLi = oUl.getElementsByTagName("li");
+        //     var oBtn = document.getElementById("btn");
+        //     var iNow = 4;
+        //     for (var i = 0; i < aLi.length; i++) {
+        //         aLi[i].onmouseover = function () {
+        //             this.style.background = "red";
+        //         }
+        //         aLi[i].onmouseout = function () {
+        //             this.style.background = "";
+        //         }
+        //     }
+
+        //     oBtn.onclick = function () {
+        //         iNow++;
+        //         var oLi = document.createElement("li");
+        //         oLi.innerHTML = 1111 * iNow;
+        //         oUl.appendChild(oLi);
+        //     }
+        // }
+
+    </script>
+</body>
+
+</html>

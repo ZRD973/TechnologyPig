@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="button">点击</button>
+    <script>
+        // 防抖
+        // 触发事件、setTimeout、clearTimeout
+        // 改变页面大小的统计
+        // 滚动页面位置的统计
+        // 输入框连续输入的请求次数的控制
+        const button = document.getElementById('button');
+        function payMoney() {
+            console.log("已点击");
+        }
+
+        function debounce(func, timeout) {
+            let timer;
+            return function () {
+                let context = this;
+                let args = arguments;
+                clearTimeout(timer);
+                timer = setTimeout(() => {
+                    func.apply(context, args);
+                    console.log(args);
+
+                }, timeout);
+            }
+        }
+        button.addEventListener('click', debounce(payMoney, 1000));
+
+
+
+        // 节流
+        // 滚动屏幕：统计用户滚动屏幕的行为来做出相应的网页反应；
+        // 用户如果不断的进行滚动，会不断产生请求，响应也会不断增加，容易导致网络阻塞
+        // 流程：触发事件、执行任务、设置事件间隔
+
+        // 第一种实现方法
+        // function coloring() {
+        //     let r = Math.floor(Math.random() * 255);
+        //     let g = Math.floor(Math.random() * 255);
+        //     let b = Math.floor(Math.random() * 255);
+        //     document.body.style.background = `rgb(${r},${g},${b})`;
+        // }
+
+        // function throttle(func, timeout) {
+        //     let timer;
+        //     return function () {
+        //         let context = this;
+        //         let args = arguments;
+        //         if(timer){
+        //             return;
+        //         }
+        //         timer = setTimeout(() => {
+        //             func.apply(context,args);
+        //             timer = null;
+        //         }, timeout);
+        //     }
+        // }
+        // window.addEventListener('resize', throttle(coloring, 2000));
+
+        // 第二种实现方法
+        function coloring() {
+            let r = Math.floor(Math.random() * 255);
+            let g = Math.floor(Math.random() * 255);
+            let b = Math.floor(Math.random() * 255);
+            document.body.style.background = `rgb(${r},${g},${b})`;
+        }
+
+        function throttle(func, timeout) {
+            let pre = 0;
+            return function () {
+                let now = new Date();
+                let content = this;
+                let args = arguments;
+                if (now - pre > timeout) {
+                    func.apply(content, args);
+                    pre = now;
+                }
+            }
+        }
+        window.addEventListener('resize', throttle(coloring, 1000));
+    </script>
+</body>
+
+</html>

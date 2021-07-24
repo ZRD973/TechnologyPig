@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .C {
+            width: 200px;
+            height: 60px;
+            background: red;
+            color: aliceblue;
+        }
+
+        .A {
+            width: 200px;
+            height: 80px;
+            background: lightblue;
+            color: aliceblue;
+            margin-top: 10px;
+            /* overflow: hidden; */
+        }
+
+        .B {
+            width: 200px;
+            height: 30px;
+            background: lightgrey;
+            color: aliceblue;
+            margin-top: 20px;
+            /* position: absolute;
+            margin-top: 20px; */
+            /* position: relative;
+            top: 20px; */
+        }
+
+        .clearfix::before,
+        .clearfix::after {
+            content: '';
+            display: table;
+            clear: both;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="C">元素C</div>
+    <div class="A clearfix">
+        <div class="B">元素B</div>
+    </div>
+    <!--
+        什么时候发生
+        1、垂直方向
+        2、块级元素，不是行内元素，也不是行内块级元素
+    -->
+
+    <!--
+        外边距计算
+        1、正数 && 正数 取最大的数
+        2、负数 && 负数 取绝对值最大的数
+        3、正数 && 负数 相加的和
+    -->
+
+    <!--
+        1、绝对定位
+        position: absolute;
+        margin-top: 20px;
+    -->
+
+    <!--
+        2、相对定位
+        position: relative;
+        top: 20px;
+    -->
+
+    <!--
+        3、BFC
+        overflow:hidden; 可能隐藏掉其他部分
+    -->
+
+    <!--
+        4、内边距
+        padding-top:20px;
+    -->
+    <!--
+        4、空元素
+        margin-top:20px;
+    -->
+    <!--
+        4、伪元素
+        .clearfix::before,
+        .clearfix::after {
+            content: '';
+            display: table;
+            clear: both;
+        }
+    -->
+
+
+</body>
+
+</html>

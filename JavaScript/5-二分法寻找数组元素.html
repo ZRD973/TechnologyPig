@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function search(target) {
+            var arr = [1, 2, 3, 52, 55, 67, 78, 87, 91];
+            var start = 0, end = arr.length - 1, middle, element;
+            while (start <= end) {
+                middle = Math.floor((start + end) / 2)
+                element = arr[middle];
+                if (element === target) {
+                    console.log(middle);
+                    return element;
+                } else if (target < element) {
+                    end = middle - 1;
+                } else {
+                    start = middle + 1;
+                }
+            } return '没有这个数';
+        }
+        var result = search(52);
+        console.log(result);
+
+
+
+    </script>
+</body>
+
+</html>
