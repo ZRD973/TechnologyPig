@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>vue-router是单例模式创建</h1>
+    <script>
+        // 目的:让你一个类只能实例化一次
+        // 应用场景:当我们要创建的对象如果存在两个会出现问题
+
+        // 通过一个标识，来判断是否已经实例化，如果已经实例化过一次，这个标识就会标识已经实例化过了。那么接下来的实例化将会无效
+        function single(a) {
+            if (single.instanced) {
+                return single.instanced;
+            } else {
+                this.a = a;
+                single.instanced = this;
+                console.log(a);
+                console.log(this);
+            }
+        }
+        single.instanced = null
+        obj = {
+            hh: '123'
+        }
+        single(obj)
+        single(obj)
+
+        // 创建一个唯一的储存器
+        // 我们有一个储存器储存着数据,这样的储存器我们需要保障它不能创建多个
+
+        function store() {
+            if (store.installed) {
+                return store.installed;
+            } else {
+                this.cache = {}
+                store.installed = this;
+            }
+        }
+        store.prototype.addData = function (name, value) {
+            this.cache[name] = value;
+        }
+        store.installed = null;
+
+        // vue.use(vue-router);let _vue;
+        function install(vue) {
+            if (_vue === vue && install.installed) return;
+            //注册vue-router
+            _vue = vue;
+            install.installed = true;
+        }
+
+
+    </script>
+</body>
+
+</html>

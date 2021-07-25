@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 目的:当接口名字发生了改变，通过写一个适配器，来代替替换
+        // 应用场景:面临接口不通用的问题
+
+
+        // 我们原本在所有代码里都调用的a方法，突然有一天，有人把a方法的名字改成了b，但是我们已经在很多地方调用了a方法了。怎么办?
+
+        //加入这段代码
+        var a = function () {
+            b();
+        }
+
+
+        // 框架的变更 
+        // 目前项目使用的A框架，现在改成了jquery，两个框架十分类似,但是有少数几个方法不同
+        window.A = $;
+        //$.css A.c A.o $.on
+        A.c = function () {
+            return $.css();
+        }
+
+
+        // 参数的适配
+        // 为了避免参数不适配产生问题，很多框架会有一个参数适配操作
+        //name
+        function f1(obj) {
+            //默认参数
+            var _default = {
+                name: "xxx ",
+                age: 18
+            }
+            for (var item in _default) {
+                obj[item] = obj[item] || _default[item];
+            }
+        }
+
+
+
+    </script>
+</body>
+
+</html>

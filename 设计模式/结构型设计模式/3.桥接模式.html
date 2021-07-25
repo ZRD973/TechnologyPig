@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // 目的:抽象出代码中的公用部分，提高代码的复用性
+        // 应用场景:发现写了一大堆核心功能一致，但有一些细节不同的方法的时候
+
+        // a，b，c三个方法都有一个相同的console.log(1),操作，那么我们就把console.log(1)独立出来，再桥接回去
+        function a() {
+            console.log(1); console.log(2);
+        }
+        function b() {
+            console.log(1); console.log(3);
+        }
+        function c() {
+            console.log(1); console.log(4);
+        }
+        //提取
+        function common() {
+            console.log(1);
+        }
+
+
+        // 创建不同的选中效果
+        // 有一组菜单,上面每种选项,都有不同的选中效果
+
+        //bad
+        function createMenu1() {
+            var _dom = document.createElement('div'); _dom.innerHTML = "this is menu1"
+            _dom.onmouseover = function () {
+                _dom.style.backgroundColor = 'red '
+            }
+
+        }
+        function createMenu2() {
+            var _dom = document.createElement('div'); _dom.innerHTML = "this is menu2"
+            _dom.onmouseover = function () {
+                _dom.style.backgroundcolor = 'white'
+            }
+        }
+        function createMenu3() {
+            var _dom = document.createElement('div'); _dom.innerHTML = "this is menu3"
+            _dom.onmouseover = function () {
+                _dom.style.color = 'green'
+            }
+        }
+        //good
+        function createMenu(word, action) {
+            var _dom = document.createElement('div');
+            _dom.innerHTML = word;
+            _dom.onmouseover = function () {
+                action();
+            }
+        }
+        var data = [
+            {
+                word: "this is menu1",
+                action: function () {
+                    _dom.style.backgroundcolor = "red"
+                }
+            },
+            {
+                word: "this is menu2",
+                action: function () {
+                    _dom.style.backgroundcolor = "white"
+                }
+            }
+        ]
+        data.forEach((menu) => {
+            createMenu(menu.word, menu.action)
+        })
+
+
+        // Axios中的多种请求方法
+        // axios中有很多发请求的方法，那么这些方法是怎么定义的呢?
+
+        //注册post，put，patch
+        axios.prototype.post = function () { }
+        axios.prototype.put = function () { }
+        axios.prototype.patch = function () { }
+
+        // good
+        var arr = ['post', 'put', 'patch'];
+        //this.request 
+        arr.forEach((method) => {
+            axios.prototype[method] = function (url, data, config) {
+                return this.request(merge(config || {}, {  //merge合并对象
+                    method: method,
+                    data: data,
+                    url: url
+                }))
+            }
+        })
+
+
+    </script>
+</body>
+
+</html>

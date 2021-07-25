@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 结构型设计模式定义
+        // 目的:指导我们怎么组织对象得模块，
+        // 用处:当我们在设计对象怎么组织，模块间是怎么样得结构时使用
+
+
+        // 目的:帮我们更好的去扩展方法，代替继承去更好的扩展功能
+        // 应用场景:当我们需要扩展功能又不好直接去修改得时候
+
+
+        // 现在a方法要扩展，我们有两个选择，要么直接重写a，但是违反开闭原则。那么我们可以通过装饰者三步走。
+        // 1，重写新方法2，调用老方法3，加上新操作
+
+        //原方法
+        function a() {
+            console.log(1);
+        }
+        //扩展a得console.log(2)功能
+        function extenda() {
+            a();
+            console.log(2);
+        }
+
+
+        // 扩展事件绑定
+        // 我们接受了一个老项目,老项目一些事件我们需要扩展
+        var decorator = function (dom, newFn) {
+            if (typeof dom.onclick == "function") {
+                var _old = dom.onclick;
+                dom.onclick = function () {
+                    _old();
+                    newFn();
+                }
+            }
+        }
+        decorator(dom, function () {
+            console.log("删除成功")
+        })
+
+ 
+        // Vue的数组监听
+        // vue中利用defineProperty可以监听对象,那么数组怎么办?  push,shift
+
+        // 提取vue的原型链
+        var arrProto = Array.prototype;   //因为要调用老方法
+        // 拷贝
+        var arrayMethods = Object.create(arrProto);
+        var arr = ['push','pop','shift'];
+        arr.forEach((method)=>{
+            arrayMethods[method]=function(){
+                var original=arrProto[method];  //拿出老方法
+                var result = original.apply(this,args);  //调用老方法
+                dep.notify();  //新方法：调用视图更新
+                return result;
+            }
+        })
+
+
+    </script>
+</body>
+
+</html>

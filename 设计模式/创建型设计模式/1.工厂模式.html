@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        // 创建型设计模式
+        // 目的:指导我们解决创建对象的方面的需求和问题
+        // 用处:当我们在设计功能的类怎么设计，怎么创建对象的时候用上
+
+
+        // 工厂模式的定义
+        // 目的:让我们不用关心对象的创建，更简单的获取到想要的对象
+        // 应用场景:我们需要创建大量的对象，尤其当可能是各种对象的时候
+        // 构建一个工厂方法，通过调用这个工厂方法，来创建类，而不用我们具体去创建某个类。其实也是一个依赖于抽象不依赖于具体的体现
+
+
+        function factory(type) {
+            return new factory[type]()
+        }
+        factory.basketball = function () { }
+        factory.tennis = function () { }
+        factory('basketball')
+
+        // 创建不同的弹窗
+        // 假设我们在项目中,需要各种各样的弹窗,比如警告型的,成功型的，提示型的
+        function popFactor(type, word) { }
+        popFactor.warnPop = function () { }
+        popFactor.warnPop.prototype.warnPopaction = function () { }
+        popFactor.successPop = function () { }
+        popFactor.successPop.prototype.successPopaction = function () { }
+        popFactor('warnPop', 'waring')
+
+    </script>
+
+</body>
+
+</html>

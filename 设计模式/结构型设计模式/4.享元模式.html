@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // 目的:减少重复代码块和重复对象
+        // 应用场景:发现出现了类似重复的代码块和对象
+
+        // 把几个相似对象或者代码块的不同部分拿出来作为享元数据，然后剩下的相同部分共享这些享元数据
+        //假设要创建是个不同大小的圆形对象
+        function circle(radius) {
+            this.radius = radius;
+        }
+        var c1 = new circle(10);
+        var c2 = new circle(5);
+        //...... 
+        //分析，这几个圆形他们只是半径不同
+        var radiusArr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+        //把原型的创建作为类的一个方法
+        circle.prototype.createcircle = function (radius) { }
+        radiusArr.forEach((radius) => {
+            new circle().createCircle(radius);
+        })
+        // 100件衣服，找一个百个模特来穿，变成找一个模特来穿
+
+        // 文件上传
+        // 项目中有一个文件上传功能,该功能可以上传多个文件
+        //bad
+        function uploader(file) {
+            this.file = file;
+        }
+        uploader.prototype.up = function () { }
+        new uploader(filebj).up();
+        //good
+        var fileArr = [file1, file2, file3]
+        function uploader() { }
+        uploader.prototype.uploadFile = function (file) { }
+        fileArr.forEach((file) => {
+            new uploader.uploadFile(file)
+        })
+
+
+        // If-else分支写着类似操作
+        // 我们常常发现一段if-else分支写着类似的代码
+        function f1(num) {
+            var all = 0;
+            if (num) {
+                all += num;
+            } else {
+                all += 1;
+            }
+        }
+        function f1(num) {
+            var all = 0;
+            var _num = 1; if (num) {
+                _num = num;
+            }
+            all += _num;
+        }
+        // bad
+        $.extend({ a: 1 });
+        $.extend({ a: 1 }, { b: 2 })
+
+        $.extend = function () {
+            if (arguments.length == 1) {
+                for (var item in arguments[0]) {
+                    this[item] = arguments[0][item]
+                }
+            } else if (arguments.length == 2) {
+                for (var item in arguments[1]) {
+                    arguments[o][item] = arguments[1][item]
+                }
+            }
+        }
+        // good
+        $.extend = function () {
+            var target = arguments[0]
+            var source = this
+            if (arguments.length == 2) {
+                var target = arguments[1]
+                var source = arguments[0]
+            }
+            for (var item in target) {
+                source[item] = target[item]
+            }
+
+        }
+
+    </script>
+</body>
+
+</html>

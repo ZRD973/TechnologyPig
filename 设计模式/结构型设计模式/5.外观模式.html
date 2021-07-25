@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 目的:简化多个子系统的调用
+        // 应用场景:有一个功能需要多个模块调用来完成的时候，我们提供一个集合的高级接口，让使用者只需要调用这个高级接口
+
+        // 为了简化使用者的调用，把一大堆的子系统手动调用，封装为一个更高级的接口，使用者只需要调用一个接口即可
+        //完成功能需要调用a,b,c方法a(); b(); c();
+        //为了简化调用，提供高级接口function d(){
+        a(); b(); c();
+        function d() { }
+        d();
+
+        // 兼容的封装
+        // 在需要兼容的时代,我们需要判断浏览器支持什么来做对应的操作
+        // dom.addEventListener()
+        // dom.attachEvent();
+        // dom.onclick
+        function addEvent(dom, type, fn) {
+            if (dom.addEventListener) {
+                dom.addEventListener(type, fn,);
+            } else if (dom.attachEvent) {
+                dom.attachEvent(' on' + type, fn);
+            } else {
+                ddm["on" + type] = fn;
+            }
+        }
+        addEvent();
+
+        // —系列复杂的绘图命令
+        // Canvas如果要画一个图形调用api很复杂,为了简化，我们提供一个高级接口
+
+        // bad
+        //画圆
+        ctx.beginPath();
+        ctx.arc(95, 50, 40);
+        ctx.stroke();
+        //画三角形
+        cxt.beginPath();
+        cxt.moveTo(250, 50);
+        xt.lineTo(200, 200);
+        cxt.lineTo(300, 300);
+        cxt.closePath();
+        cxt.stroke();
+
+        // good
+        function circle(point, r) {
+            ctx.beginPath();
+            ctx.arc(point[0], point[1], r);
+            ctx.stroke();
+        }
+        circle([10, 20], 10)
+
+        function triangle(point1, point2, point3) {
+            cxt.beginPath();
+            cxt.moveTo(250, 50);
+            cxt.lineTo(200, 200);
+            cxt.lineTo(300, 300);
+            cxt.closePath();
+            cxt.stroke();
+        }
+        triangle(args)
+
+    </script>
+</body>
+
+</html>
