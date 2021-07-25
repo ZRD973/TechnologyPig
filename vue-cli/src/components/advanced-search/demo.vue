@@ -1,7 +1,7 @@
 <template>
  <div>
 
-      <advanced-search
+      <search
         placeholder="请输入员工或专业"
         label-width="100px"
         input-width="400px"
@@ -9,7 +9,11 @@
         @searchBtn="searchBtn"
         @toggleFilter="myToggleFilter"
         @resetBtn="resetBtn">
-      </advanced-search>
+        <el-button type="success">按钮1</el-button>
+        <el-button type="info">按钮2</el-button>
+        <el-button type="warning">按钮3</el-button>
+        <el-button type="danger">按钮4</el-button>
+      </search>
 
       <div v-show="Visible">我是内容啊</div>
 
@@ -21,10 +25,10 @@
 
 import {reactive,ref, watch} from "vue";
 import useButtonGroup from "./useButtonGroup";
-import AdvancedSearch from "./index";
+import Search from "./index";
 export default {
   components: {
-    AdvancedSearch
+    Search
   },
   setup(props, ctx) {
 
