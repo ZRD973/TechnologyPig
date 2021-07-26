@@ -73,6 +73,8 @@ background-image:linear-gradient(to right,red,yellow)
 
 #### 弹性盒子
 
+阮一峰教学   https://www.ruanyifeng.com/blog/2015/07/flex-grammar.html 
+
 - display:flex  弹性容器
 - flex-direction : row, row-reverse, column, column-reverse  排列方式
 - flex-grow:1;  默认0，元素伸展，父元素有剩余空间，按照比例进行分配

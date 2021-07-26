@@ -37,6 +37,8 @@ this.$store.state
             this.$root //调用根组件
         }
     }
+在element ui 的dialog中，ref要在dialog的open回调事件中才能执行。
+Dialog 的内容是懒渲染的，即在第一次被打开之前，传入的默认 slot 不会被渲染到 DOM 上。因此，如果需要执行 DOM 操作，或通过 ref 获取相应组件，请在 open 事件回调中进行。
 
 六、provide/inject
 // A.vue

@@ -813,7 +813,7 @@ let html = `
 
 ### **6、什么是promise**
 
-```
+```js
 promise是为解决异步处理回调金字塔问题而产生的,有 3 种状态：pending、resolve 、 rejected。它可以获取异步操作的消息。Promise 的状态具有不受外界影响和不可逆两个特点。promise 
 ```
 
