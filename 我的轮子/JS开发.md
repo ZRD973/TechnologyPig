@@ -41,5 +41,22 @@ parseInt(num) === num
 Number.isInteger(num)
 ```
 
+### **Vue组件在同一个地方使用可能造成数据相互影响**
 
+```
+引入组件时可以引入两次，命名不同。
+或者传递不同的参数，
+再不然查百度。
+```
+
+### Vue页面刷新三种方式
+
+```js
+一、location.reload();
+二、this.$router.go(0);
+三、空白页面supplierAllBack.vue
+	点击确定的时候先跳转到这个空白页，然后再立马跳转回来,地址栏有个快速的切换的过程，可采用
+四、provide / inject 组合   isRouterAlive //true or false 来控制
+// 用vue-router重新路由到当前页面，页面是不进行刷新的
+```
 
