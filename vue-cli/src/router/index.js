@@ -27,6 +27,11 @@ const routes = [
     name: "Advanced",
     component: () => import("../components/advanced-search/demo.vue"),
   },
+  {
+    path: "/createVue",
+    name: "CreateVue",
+    component: () => import("../views/createVue.vue"),
+  },
 ];
 
 const router = createRouter({

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+
+    </div>
+    <script>
+        // 1、数据驱动  
+        // 2、no dom operation
+        // 数据响应是
+        function observe(obj) {
+            Object.keys(obj).forEach(key => {
+                defineReactive(obj, key, obj[key])
+            })
+        }
+        function defineReactive(obj, key, val) {
+            Object.defineProperty(obj, key, {
+                get() {
+                    console.log('get', key);
+                    return val;
+                },
+                set(newVal) {
+                    console.log('set', key);
+                    val = newVal;
+                    // update
+                    kvue.update()
+                },
+            })
+        }
+        function Vue(options) {
+            this.$options = options;
+            this.$data = options.data();
+            // 响应式处理
+            observe(this.$data);
+        }
+        Vue.prototype.$mount = function (sel) {
+            // update
+            this.update = function () {
+                console.log('vue update');
+                // 虚拟dom的获取
+                const vnode = this.$options.render.call(this, this.createElement);
+
+
+                if (!this.isMounted) {
+                    const parent = document.querySelector(sel);
+                    // 根据vnode创建dom，并加入到parent
+                    this.patch(parent, vnode)
+
+                    this.isMounted = true
+                    if (this.$options.mounted) {
+                        this.$options.mounted.call(this)
+                    }
+                } else {
+                    // update
+                    // diff
+                    this.patch(this._vnode, vnode)
+                }
+                this._vnode = vnode;
+            }
+            this.update();
+        }
+        Vue.prototype.createElement = function (tag, props, children) {
+            return { tag, props, children }
+        }
+        Vue.prototype.patch = function (n1, n2) {
+            if (n1.nodeType) {
+                // init
+                // 创建n2对应dom
+                const child = this.createElm(n2);
+                n1.appendChild(child);
+                n2.$el = child
+            } else {
+                // update 
+                const el = n2.$el = n1.$el
+                if(n1.tag === n2.tag){
+                    // 相同节点
+                    if(typeof n1.children === 'string'){
+                        if(typeof n2.children === 'string'){
+                            if(n1.children !== n2.children){
+                                el.textContent = n2.children
+                            }
+                        }
+                    }
+                }else{
+                    // replaceement
+                }
+            }
+        }
+        Vue.prototype.createElm = function (vnode) {
+            const { tag, children } = vnode;
+            const el = document.createElement(tag)
+
+            // props
+            // children
+            if (Array.isArray(children)) {
+                // 子元素
+                children.forEach(child => el.appendChild(this.createElement(child)))
+            } else {
+                // 本文
+                el.textContent = children
+            }
+            vnode.$el = el
+            return el;
+        }
+    </script>
+    <script>
+        const kvue = new Vue({
+            data() {
+                return {
+                    title: '我是一个标题'
+                }
+            },
+            mounted() {
+                setTimeout(() => {
+                    this.$data.title = '我还是那个标题，但是我变了'
+                }, 2000);
+            },
+            render(h) {
+                return h('h3', null, this.$data.title);
+            }
+        })
+        kvue.$mount('#app')
+    </script>
+</body>
+
+</html>

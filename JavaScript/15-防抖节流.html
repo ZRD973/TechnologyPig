@@ -67,6 +67,29 @@
         // window.addEventListener('resize', throttle(coloring, 2000));
 
         // 第二种实现方法
+        // function coloring() {
+        //     let r = Math.floor(Math.random() * 255);
+        //     let g = Math.floor(Math.random() * 255);
+        //     let b = Math.floor(Math.random() * 255);
+        //     document.body.style.background = `rgb(${r},${g},${b})`;
+        // }
+
+        // function throttle(func, timeout) {
+        //     let pre = 0;
+        //     return function () {
+        //         let now = new Date();
+        //         let content = this;
+        //         let args = arguments;
+        //         if (now - pre > timeout) {
+        //             func.apply(content, args);
+        //             pre = now;
+        //         }
+        //     }
+        // }
+        // window.addEventListener('resize', throttle(coloring, 1000));
+
+
+        // 第三种实现方法
         function coloring() {
             let r = Math.floor(Math.random() * 255);
             let g = Math.floor(Math.random() * 255);
@@ -75,15 +98,17 @@
         }
 
         function throttle(func, timeout) {
-            let pre = 0;
+            let flag = true;
             return function () {
-                let now = new Date();
                 let content = this;
                 let args = arguments;
-                if (now - pre > timeout) {
-                    func.apply(content, args);
-                    pre = now;
+                if (flag) {
+                    setTimeout(() => {
+                        func.apply(content, args);
+                        flag = true;
+                    }, timeout);
                 }
+                flag = false;
             }
         }
         window.addEventListener('resize', throttle(coloring, 1000));
