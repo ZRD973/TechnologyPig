@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let arr = [1, 2, 3, 4, 5];
+
+        //1.ForEach
+        Array.prototype.ForEach = function (func) {
+            for (let i = 0; i < this.length; i++) {
+                func(this[i], i, this);
+            }
+        }
+        // arr.ForEach(item=>{ console.log(item); })
+
+        //2.Filter
+        Array.prototype.Filter = function (func) {
+            let res = []
+            for (let i = 0; i < this.length; i++) {
+                func(this[i], i, this) && res.push(this[i]);
+            }
+            return res;
+        }
+        // arr.Filter(item=>{return item > 3 }).ForEach(item=>{console.log(item);})
+
+        //3.Reduce
+        Array.prototype.Reduce = function (func, init) {
+            let total = init || this[0]
+            let start = init ? 0 : 1
+            for (let i = start; i < this.length; i++) {
+                total = func(total, this[i], i, this)
+            }
+            return total
+        }
+        // arr.Reduce((aa, bb) => { return aa + bb; })
+
+        //4.Every
+        Array.prototype.Every = function (func) {
+            let flag = true
+            for (let i = 0; i < this.length; i++) {
+                if (!func(this[i], i, this)) {
+                    flag = false;
+                    break;
+                }
+            }
+            return flag;
+        }
+        //   arr.Every(item=>{ return item > 2})
+
+        //5.Some
+        Array.prototype.Some = function (func) {
+            let flag = false
+            for (let i = 0; i < this.length; i++) {
+                if (func(this[i], i, this)) {
+                    flag = true;
+                    break;
+                }
+            }
+            return flag;
+        }
+
+        //6.Map
+
+        //map ES6版
+        Array.prototype.Map = function (func) {
+            let res = [];
+            for (let i = 0; i < this.length; i++) {
+                res.push(func(this[i], i, this))
+            }
+            return res;
+        }
+        arr.Map(function (e, i) { console.log(e * i); })
+
+        //map Reduce版
+        Array.prototype.Map = function (func) {
+            let arr = this
+            return arr.reduce((prev, ele, index, arr) => {
+                prev.push(func(ele, index, arr))
+                return prev
+            }, [])
+        }
+
+    </script>
+</body>
+
+</html>
