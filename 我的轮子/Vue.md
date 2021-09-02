@@ -85,3 +85,27 @@ devServer：{
 ```
 
 ![](E:\Web\我的轮子\image\vue生命周期.webp)
+
+
+
+```js
+//Vue3亮点
+Performance(比 vue2 runtime快了2倍)
+Tree shaking(按需编译代码)   打包使包变小
+Ts support(更优秀的Ts支持)
+Composition API(组合API) :灵活的逻辑组合与复用、响应式对象（ref、reactive）、生命周期（on……）
+Custom Renderer API(自定义渲染器)   
+内置新特性组件
+//性能
+重写了虚拟dom的实现
+编译模板的优化（运行时编译）
+uodate性能提高
+ssr速度提高
+升级：vue add vue-next
+Fragment:不在局限于模板中的单个根节点
+
+
+App -> vnode -> 渲染成真实的 element dom -> mount 挂载到跟容器上
+
+```
+

@@ -79,3 +79,5 @@ Number.isInteger(num)
 5、数字字符串，直接在值前面直接写个+号，就可以直接转换成数字。
 ```
 
+npm install rimraf -g
+rimraf node_modules
