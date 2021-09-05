@@ -76,7 +76,7 @@
             }
             return res;
         }
-        arr.Map(function (e, i) { console.log(e * i); })
+        arr.Map((item, index) => { return item * index })
 
         //map Reduce版
         Array.prototype.Map = function (func) {
@@ -86,6 +86,88 @@
                 return prev
             }, [])
         }
+
+        // 7.Pop
+        Array.prototype.Pop = function () {
+            let num = this[this.length - 1];
+            this.length--;
+            return num;
+        }
+
+        //8. Push()
+        Array.prototype.Push = function () {
+            for (let i = 0; i < arguments.length; i++) {
+                this[this.length] = arguments[i];
+            }
+            return this.length;
+        }
+
+        //9.Shift()
+        Array.prototype.Shift = function () {
+            let num = this[0];
+            for (let i = 1; i < this.length; i++) {
+                this[i - 1] = this[i];
+            }
+            this.length--;
+            return num;
+        }
+
+        //9.Unshift()
+        Array.prototype.Unshift = function () {
+            let ary = [...arguments, ...this];
+            this.length = ary.length
+            for (let i = 0; i < this.length; i++) {
+                this[i] = ary[i]
+            }
+            return this.length;
+        }
+
+        // console.log(Array.prototype);
+
+        // function deepClone(obj) {
+        //     let newObj = Array.isArray(obj) ? []:{}
+        //     for (const key in obj) {
+        //         if(obj && obj.hasOwnProperty(key)){
+        //             if(obj[key] && typeof obj[key] === "object"){
+        //                 newObj[key] = deepClone(obj[key])
+        //             }else{
+        //                 newObj[key] = obj[key]
+        //             }
+        //         }
+        //     }
+        //     return newObj
+        // }
+        function deepClone(obj,dest){
+            var dest = dest || {}
+            for (const key in obj) {
+                if(typeof obj[key] === "object"){
+                    if(Array.isArray(obj[key])){
+                        dest[key] = []
+                    }else{
+                        dest[key] = {}
+                    }
+                    deepClone(obj[key],dest[key]);
+                }else{
+                    dest[key] = obj[key]
+                }
+            }
+            return dest;
+        }
+
+        let a = {
+            name: 'zs',
+            age: {
+                n: 1,
+                b: {
+                    c: 1
+                }
+            }
+        }
+        let b = deepClone(a);
+           b.age.n=3
+        console.log(b);
+    //    console.log(a);
+
 
     </script>
 </body>

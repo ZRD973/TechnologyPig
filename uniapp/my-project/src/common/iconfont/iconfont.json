@@ -1,0 +1,16 @@
+{
+  "id": "2605795",
+  "name": "HBMSApp",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "18215728",
+      "name": "Search - clear@1x",
+      "font_class": "clear",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    }
+  ]
+}

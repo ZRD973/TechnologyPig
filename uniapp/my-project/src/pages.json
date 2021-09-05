@@ -1,0 +1,133 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/home/menu",
+			"style": {
+				"navigationBarTitleText": "首页",
+				"navigationStyle":"custom"
+			}
+		},
+		{
+			"path": "pages/home/user",
+			"style": {
+				"navigationBarTitleText": "个人信息"
+			}
+		},
+		{
+			"path": "pages/home/visitor",
+			"style": {
+				"navigationBarTitleText": "客户拜访"
+			}
+		},
+		{
+			"path": "pages/canteen/index",
+			"style": {
+				"navigationBarTitleText": "食堂"
+			}
+		},
+		{
+			"path": "pages/canteen/finish",
+			"style": {
+				"navigationBarTitleText": "支付完成"
+			}
+		},
+		{
+			"path": "pages/inform/index",
+			"style": {
+				"navigationBarTitleText": "通知公告"
+			}
+		},
+		{
+			"path": "pages/inform/detail",
+			"style": {
+				"navigationBarTitleText": "详情"
+			}
+		},
+		{
+			"path": "pages/approve/index",
+			"style": {
+				"navigationBarTitleText": "审批中心"
+			}
+		},
+		{
+			"path": "pages/approve/certificate-detail",
+			"style": {
+				"navigationBarTitleText": "借用证书审批"
+			}
+		},
+		{
+			"path": "pages/approve/communicate-detail",
+			"style": {
+				"navigationBarTitleText": "沟通记录手机评审"
+			}
+		},
+		{
+			"path": "pages/approve/deploy-detail",
+			"style": {
+				"navigationBarTitleText": "人员调配审批"
+			}
+		},
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "uni-app"
+			}
+		}
+	],
+	"subPackages": [{
+		"root": "pagesA",
+		"pages": [
+			{
+				"path": "account",
+				"style": {
+					"navigationBarTitleText": "账号管理"
+				}
+			},
+			{
+				"path": "develop",
+				"style": {
+					"navigationBarTitleText": "开发信息"
+				}
+			}
+			// ,
+			// {
+			// 	"path": "person/info",
+			// 	"style": {
+			// 		"navigationBarTitleText": "个人信息"
+			// 	}
+			// }
+		]
+	}],
+	"globalStyle": {
+		"navigationBarTextStyle": "white",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#0F59A4",
+		"backgroundColor": "#F8F8F8",
+		"h5": {
+			"navigationStyle": "custom"
+		}
+	},
+	"tabBar": {
+		"color": "#454545",
+		"selectedColor": "#0F59A4",
+		"borderStyle": "black",
+		"backgroundColor": "#ffffff",
+		"list": [{
+			"pagePath": "pages/home/menu",
+			"iconPath": "static/images/home.png",
+			"selectedIconPath": "static/images/homeactive.png",
+			"text": "首页"
+		},
+		 {
+			"pagePath": "pages/home/user",
+			"iconPath": "static/images/my.png",
+			"selectedIconPath": "static/images/myactive.png",
+			"text": "我"
+		}]
+	},
+	"app-plus": {
+		"softinputMode": "adjustPan",
+		"softinputNavBar": "none"
+	},
+	"sitemapLocation": "sitemap.json"
+}
