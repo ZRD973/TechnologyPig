@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="message">
+        {{message}}
+    </div>
+    <script src="./myVue2.js"></script>
+    <script>
+        let vm = new Vue({
+            el:'#app',
+            data:{
+                message:"哈哈"
+            }
+        })
+    </script>
+</body>
+</html>

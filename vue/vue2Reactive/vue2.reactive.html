@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>test</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{title}}</h1>
+        <button v-on:click="clickMe">click me!</button>
+        <hr>
+        <input v-model="name">
+        <h2>{{name}}</h2>
+    </div>
+</body>
+<script src="./vue2.js"></script>
+<script>
+    // new 一个实例
+    let vm = new MyVue({
+        el: '#app',
+        data: {
+            title: 'Hello world',
+            name: 'zrd'
+        },
+        methods: {
+            clickMe: function () {
+                this.title = (this.title == 'Hello world' ? '你好，世界' : 'Hello world');
+            }
+        },
+        mounted: function () {
+            window.setTimeout(() => {
+                this.title = '你好，世界';
+            }, 1000);
+        }
+    });
+
+</script>
+
+</html>
