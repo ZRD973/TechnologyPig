@@ -1,16 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <script>
+        function person() {
+            console.log(this.name);
+        }
+        let zs = {
+            name: 'zhangsan'
+        }
         // Apply
-        // Bind
+        Function.prototype.Apply = function (ctx, arr) {
+            ctx.func = this;
+            let res = arr ? ctx.func(...arr) : ctx.func();
+            delete ctx.func;
+            return res;
+        }
+
         // Call
+        Function.prototype.Call = function (ctx) {
+            ctx.func = this;
+            let args = [...arguments].slice(1)
+            let res = ctx.func(...args);
+            delete ctx.func;
+            return res;
+        }
+
+        //Bind
+        Function.prototype.Bind = function (ctx, ...args1) {
+            let self = this;
+            function func(...args2) {
+                return self.call(this instanceof func ? this : ctx, ...args1, ...args2);
+            }
+            func.prototype = Object.create(self.prototype);
+            return func;
+        }
+
+        person.Apply(zs)
+        person.Call(zs)
+        person.Bind(zs)()
     </script>
 
 </body>
+
 </html>

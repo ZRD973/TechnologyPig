@@ -122,51 +122,58 @@
             return this.length;
         }
 
-        // console.log(Array.prototype);
-
-        // function deepClone(obj) {
-        //     let newObj = Array.isArray(obj) ? []:{}
-        //     for (const key in obj) {
-        //         if(obj && obj.hasOwnProperty(key)){
-        //             if(obj[key] && typeof obj[key] === "object"){
-        //                 newObj[key] = deepClone(obj[key])
-        //             }else{
-        //                 newObj[key] = obj[key]
-        //             }
-        //         }
-        //     }
-        //     return newObj
-        // }
-        function deepClone(obj,dest){
-            var dest = dest || {}
-            for (const key in obj) {
-                if(typeof obj[key] === "object"){
-                    if(Array.isArray(obj[key])){
-                        dest[key] = []
-                    }else{
-                        dest[key] = {}
-                    }
-                    deepClone(obj[key],dest[key]);
-                }else{
-                    dest[key] = obj[key]
+        // 10 Splice()
+        Array.prototype._splice = function (start, deleteCount, ...addList) {
+            if (start < 0) {
+                if (Math.abs(start) > this.length) {
+                    start = 0;
+                } else {
+                    start += this.length;
                 }
             }
-            return dest;
-        }
-
-        let a = {
-            name: 'zs',
-            age: {
-                n: 1,
-                b: {
-                    c: 1
-                }
+            if (typeof deleteCount === 'undefined') {
+                deleteCount = this.length - start;
             }
+            const removeList = this.slice(start, start + deleteCount);
+            const right = this.slice(start + deleteCount);
+            let addIndex = start;
+            addList.concat(right).forEach(item => {
+                this[addIndex] = item;
+                addIndex++;
+            })
+            this.length = addIndex
+            return removeList
         }
-        let b = deepClone(a);
-           b.age.n=3
-        console.log(b);
-    //    console.log(a);
+        // arr._splice(-2, 1, 6, 7)
+
+        // 11 Slice()
+        Array.prototype.Slice = function (start = 0, end = this.length) {
+            let res = [];
+            if(start>=this.length){
+                return res;
+            }
+            if(start<0){
+                start = start + this.length < 0 ? 0 : start + this.length;
+            }
+            if(end<0){
+                end = end + this.length < 0 ? 0 : end + this.length;
+            }
+            for (let i = start; i < end; i++) {
+                res.push(this[i])
+            }
+            return res;
+        }
+        // Slice(3,4)
+
+        // 12、Reverse
+        Array.prototype.Reverse = function () {
+            let start = 0 , end = this.length - 1
+            while (start <= end) {
+                [this[start++], this[end--]] = [this[end], this[start]]
+            }
+            return this;
+        }
+        // arr.$reverse()
 
 
     </script>
