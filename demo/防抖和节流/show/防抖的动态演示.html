@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>防抖的动态演示</title>
+  <style>
+    .fa {
+      width: 400px;
+      margin-bottom: 30px;
+      border: 1px solid red;
+    }
+
+    .son {
+      width: 0px;
+      height: 40px;
+      background-color: #f0f;
+      text-align: center;
+      line-height: 40px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="fa">
+    <div class="son">
+      <span>0</span><span>%</span>
+    </div>
+  </div>
+  <button id="but">安装</button>
+  <button id="stop">暂停</button>
+  <script>
+    // 逻辑：1.利用定时器来进行递增操作（width、百分数）
+    // 2.当变量 达到400px时，是停止定时器
+    let but = document.getElementById('but');
+    let stop = document.getElementById('stop');
+    let div = document.getElementsByTagName('div');
+    let span = document.getElementsByTagName('span');
+    let timer = null;
+    let num = 0;
+    but.onclick = function () {
+      clearInterval(timer);
+      timer = setInterval(() => {
+        num += 1;
+        // 给宽进行递增
+        div[1].style.width = num + 'px';
+        // 给百分比递增
+        span[0].innerText = Math.ceil(num / 400 * 100);
+        if (num >= 400) {
+          num = 0
+          clearInterval(timer);
+        }
+      }, 10);
+      stop.onclick = function () {
+        clearInterval(timer);
+      }
+
+      // if (timer == null) {
+      //   timer = setInterval(() => {
+      //     num += 1;
+      //     // 给宽进行递增
+      //     div[1].style.width = num + 'px';
+      //     // 给百分比递增
+      //     span[0].innerText = Math.ceil(num / 400 * 100);
+      //     if (num == 400) {
+      //       clearInterval(timer);
+      //     }
+      //   }, 10);
+      // }
+    }
+  </script>
+</body>
+
+</html>

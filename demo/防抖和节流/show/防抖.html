@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>防抖</title>
+</head>
+
+<body>
+    <input type="text" id="input">
+    <script>
+        // 第一步
+        // function debounce(delay, arg) {
+        //     setTimeout(function () {
+        //         console.log(arg)
+        //     }, delay)
+        // }
+        // var input = document.getElementById('input')
+        // input.addEventListener('keyup', function (e) {
+        //     debounce(1000, e.target.value)
+        // })
+
+        // 改进一
+        // function debounce(delay, arg) {
+        //     let timer
+        //     clearTimeout(timer)
+        //     timer = setTimeout(function () {
+        //         console.log(arg)
+        //     }, delay)
+        // }
+        // var input = document.getElementById('input')
+        // input.addEventListener('keyup', function (e) {
+        //     debounce(1000, e.target.value)
+        // })
+
+        // 上面的改进一 完全不行 因为没有 存储变量
+        // function debounce(delay) {
+        //     let timer
+        //     return function (arg) {
+        //         clearTimeout(timer)
+        //         timer = setTimeout(function () {
+        //             console.log(arg)
+        //         }, delay)
+        //     }
+        // }
+        // var input = document.getElementById('input')
+        // var debounceFn = debounce(1000)
+        // input.addEventListener('keyup', function (e) {
+        //     debounceFn(e.target.value)
+        // })
+
+        // 思考一个问题 如果这个输出的结果想在外面单独输出应该怎么办？进一步改进
+
+        function debounce(callback, delay) {
+            let timer
+            return function (arg) {
+                clearTimeout(timer)
+                timer = setTimeout(function () {
+                    callback(arg)
+                }, delay)
+            }
+        }
+        function func(value) {
+            console.log(value)
+        }
+        var input = document.getElementById('input')
+        var debounceFn = debounce(func, 1000)
+        input.addEventListener('keyup', function (e) {
+            debounceFn(e.target.value)
+        })
+
+    </script>
+</body>
+
+</html>

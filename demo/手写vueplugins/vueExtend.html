@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vueExtend</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+  <div id="root">
+    <Test :msg="message" />
+  </div>
+  <script>
+    // 返回一个构造函数啊
+    // const component = Vue.extend({
+    //   template: '<div>{{msg}}</div>',
+    //   props: {
+    //     msg: {
+    //       type: String
+    //     }
+    //   }
+    // })
+    // 逼格提升点
+    Vue.component('Test', {
+      template: '<div>{{msg}}</div>',
+      props: {
+        msg: {
+          type: String
+        }
+      }
+    })
+    new Vue({
+      el: "#root",
+      data() {
+        return {
+          message: 'test component'
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
